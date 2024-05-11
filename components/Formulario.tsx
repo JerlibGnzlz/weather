@@ -18,9 +18,11 @@ interface BusquedaProps {
 export const Formulario = ({
   busqueda,
   guardarBusqueda,
+  guardarConsultar,
 }: {
   busqueda: BusquedaProps;
   guardarBusqueda: Function;
+  guardarConsultar: Function;
 }) => {
   const { pais, ciudad } = busqueda;
 
@@ -31,6 +33,8 @@ export const Formulario = ({
       mostrarAlerta();
       return;
     }
+
+    guardarConsultar(true);
   };
 
   const mostrarAlerta = () => {
