@@ -7,7 +7,7 @@ interface IResultado {
     city: {
         name: string;
     };
-    list: any[]; // La propiedad 'list' es opcional
+    list: any[];
 }
 
 
@@ -21,12 +21,15 @@ export const Clima = ({ resultado }: { resultado: IResultado | null }) => {
     console.log(resultado)
     console.log(city.name, "CIUDAD")
     console.log("otros", list)
-
+    const kelvin = 273.15
     return (
         <>
             <View style={styles.clima}>
-                <Text>{list[0].main.temp}</Text>
-                <Text>{city.name}</Text>
+                <Text style={[styles.texto, styles.actual]}>
+                    {parseInt(list[0].main.temp - kelvin)}
+                    <Text style={styles.temperatura}>&#x2103;</Text>
+                </Text>
+                <Text >{city.name}</Text>
             </View >
         </>
 
@@ -36,6 +39,22 @@ export const Clima = ({ resultado }: { resultado: IResultado | null }) => {
 
 const styles = StyleSheet.create({
     clima: {
+
+    },
+    texto: {
+        color: "#FFF",
+        fontSize: 30,
+        textAlign: "center",
+        marginRight: 20
+    },
+    actual: {
+        fontSize: 80,
+        marginRight: 0,
+        fontWeight: "bold"
+    },
+    temperatura: {
+        fontSize: 24,
+        fontWeight: "normal"
 
     }
 });
